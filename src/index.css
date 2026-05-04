@@ -1,0 +1,17 @@
+/* css reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.my-card {
+    width: 30%;
+    position: relative;
+}
+
+.btn-edit {
+    position: absolute;
+    bottom: 8px;
+}
