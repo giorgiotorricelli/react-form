@@ -16,6 +16,12 @@
     bottom: 8px;
 }
 
+.btn-remove {
+    position: absolute;
+    bottom: 8px;
+    right: 15px;
+}
+
 .my-form {
     padding: 20px;
     border-radius: 10px;

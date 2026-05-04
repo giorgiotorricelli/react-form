@@ -57,37 +57,47 @@ function App() {
     
   }
 
+  function remove(id){
+    const shrinkedArticleList = finalArticleList.filter(current => {
+      return current.id !== id;
+    });
+
+    setFinalArticleList(shrinkedArticleList);
+
+  }
+
   
   
 
   return <>
     <h1>Ciao</h1>
     <div className="container">
-      <div className="card-wrapper row justify-content-between">
+      <div className="card-wrapper row gap-5 justify-content-evenly">
         {finalArticleList.map(current => {
           return <div className="card my-card col-4 mb-3" key={current.id}>
             <img src={current.img} />
             <div className="card-body pb-5">
               <h5 className="card-title">{current.title}</h5>
               <p className="card-text">{current.content}</p>
-              <a href="#" className="btn btn-primary btn-edit">Edit</a>
+              <button className="btn btn-primary btn-edit">Edit</button>
+              <button className="btn btn-primary btn-remove" onClick={() => remove(current.id)}>Remove</button>
             </div>
           </div>
         })}
       </div>
     </div>
-    <div className="container">
+    <div className="container justify-content-center d-flex">
       <form className='my-form' onSubmit={submitHandler}>
         <div className="mb-3">
-          <label className='form-lable'>URL imamgine</label>
+          <label className='form-label'>URL imamgine</label>
           <input onChange={changeHandler} type="text" className='form-control' name='img' value={article.img} required/>
         </div>
         <div className="mb-3">
-          <label className='form-lable'>Nome Personaggio</label>
+          <label className='form-label'>Nome Personaggio</label>
           <input onChange={changeHandler} type="text" className='form-control' name='title' value={article.title} required/>
         </div>
         <div className="mb-3">
-          <p><label className='form-lable' style={{marginBottom: 0}}>Contenuto dell'articolo</label></p>
+          <p><label className='form-label' style={{marginBottom: 0}}>Contenuto dell'articolo</label></p>
           <textarea onChange={changeHandler} name="content" id='description' rows="4" cols="50" value={article.content} required></textarea>
         </div>
         <button type='submit' className='btn btn-primary'>Aggiungi</button>
