@@ -21,12 +21,14 @@ const articleListPrimary = [
     }
   ];
 
-function App() {
   const emptyArticle = {
     title: '',
     content: '',
     img: ''
   }
+
+function App() {
+  
 
   const [article, setArticle] = useState(emptyArticle);
   const [finalArticleList, setFinalArticleList] = useState(articleListPrimary);
@@ -50,7 +52,9 @@ function App() {
     const newArticleList = [...finalArticleList, articleToAdd];
     setFinalArticleList(newArticleList);
     
-    console.log(finalArticleList);
+    setArticle(emptyArticle);
+    console.log(article);
+    
   }
 
   
@@ -61,7 +65,7 @@ function App() {
     <div className="container">
       <div className="card-wrapper row justify-content-between">
         {finalArticleList.map(current => {
-          return <div className="card my-card col-4" key={current.id}>
+          return <div className="card my-card col-4 mb-3" key={current.id}>
             <img src={current.img} />
             <div className="card-body pb-5">
               <h5 className="card-title">{current.title}</h5>
@@ -76,15 +80,15 @@ function App() {
       <form className='my-form' onSubmit={submitHandler}>
         <div className="mb-3">
           <label className='form-lable'>URL imamgine</label>
-          <input onChange={changeHandler} type="text" className='form-control' name='img'/>
+          <input onChange={changeHandler} type="text" className='form-control' name='img' value={article.img} required/>
         </div>
         <div className="mb-3">
           <label className='form-lable'>Nome Personaggio</label>
-          <input onChange={changeHandler} type="text" className='form-control' name='title'/>
+          <input onChange={changeHandler} type="text" className='form-control' name='title' value={article.title} required/>
         </div>
         <div className="mb-3">
           <p><label className='form-lable' style={{marginBottom: 0}}>Contenuto dell'articolo</label></p>
-          <textarea onChange={changeHandler} name="content" id='description' rows="4" cols="50"></textarea>
+          <textarea onChange={changeHandler} name="content" id='description' rows="4" cols="50" value={article.content} required></textarea>
         </div>
         <button type='submit' className='btn btn-primary'>Aggiungi</button>
       </form>
